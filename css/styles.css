@@ -8,9 +8,9 @@ html, body {
   margin: 0;
   padding: 0;
 }
-.clock-digits-div {
+.days-without-div, .text-header-div {
   width: 100vw; 
-  height: 85vh;
+  height: 45vh;
   text-align: center;
   vertical-align: middle;
   display: flex;
