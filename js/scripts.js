@@ -1,48 +1,48 @@
 const MS_RENDER_DELAY = 1000 * 60 * 10; // every 10 minutes
 const MS_IN_A_DAY = 1000 * 60 * 60 * 24;
-const text_header_p = document.getElementById("text-header-p");
-const days_without_p = document.getElementById("days-without-p");
-const universal_day_string = "2022-11-15";
-const universal_text = "Рома продержался дней без колы:";
-const query_string = window.location.search;
-const url_params = new URLSearchParams(query_string);
+const HEADER_ELEMENT_SELECTOR = '#text-header-p';
+const DAYS_ELEMENT_SELECTOR = '#days-without-p';
+const DEFAULT_DAY_STRING = '2022-11-15';
+const DEFAULT_TEXT = 'Рома продержался дней без колы:';
 
-var date_cache = "current date goes here";
-var start_day;
-var text;
+const urlParams = new URLSearchParams(window.location.search);
 
+let headerElement;
+let daysElement;
 
-function get_parameter(parameter_name, parameter_default) {
-    var parameter_value = url_params.get(parameter_name);
-    if (parameter_value == null) {
-        parameter_value = parameter_default;
-    }
-    return parameter_value;
+let dateCache = 'current date goes here';
+let startDay;
+let text;
+
+function getParameter(name, defaultValue) {
+	const value = urlParams.get(name);
+	if (value == null) {
+		return defaultValue;
+	}
+	return value;
 }
 
-function set_up() {
-    start_day = get_parameter("start", universal_day_string);
-    start_day = new Date(start_day).toISOString().split('T');
-    text = get_parameter("text", universal_text);
-    text_header_p.innerHTML = text;
-    render_days();
+function setUp() {
+	const startParameter = getParameter('start', DEFAULT_DAY_STRING);
+	startDay = new Date(startParameter).toISOString().split('T')[0];
+	text = getParameter('text', DEFAULT_TEXT);
+	headerElement.innerHTML = text;
+	renderDays();
 }
 
-function render_days() {
-    var today = new Date().toISOString().split('T');
-    if (today !== date_cache) {
-        var date_diff = (new Date(today)) - (new Date(start_day));
-        days_without_p.innerHTML = Math.floor(date_diff / MS_IN_A_DAY);
-        date_cache = today;
-    }
+function renderDays() {
+	const today = new Date().toISOString().split('T')[0];
+	if (today !== dateCache) {
+		const dateDiff = (new Date(today)) - (new Date(startDay));
+		daysElement.innerText = Math.floor(dateDiff / MS_IN_A_DAY).toString();
+		dateCache = today;
+	}
 }
 
-function render_loop() {
-    setInterval(function(){
-        render_days();
-    }, MS_RENDER_DELAY);
-}
+document.addEventListener('DOMContentLoaded', function () {
+	headerElement = document.querySelector(HEADER_ELEMENT_SELECTOR);
+	daysElement = document.querySelector(DAYS_ELEMENT_SELECTOR);
 
-
-set_up();
-render_loop();
+	setUp();
+	setInterval(renderDays, MS_RENDER_DELAY);
+});
