@@ -2,7 +2,7 @@ const MS_RENDER_DELAY = 1000 * 60 * 10; // every 10 minutes
 const MS_IN_A_DAY = 1000 * 60 * 60 * 24;
 const HEADER_ELEMENT_SELECTOR = '#text-header-p';
 const DAYS_ELEMENT_SELECTOR = '#days-without-p';
-const DEFAULT_DAY_STRING = '2022-11-15';
+const DEFAULT_DAY_STRING = '2023-01-25';
 const DEFAULT_TEXT = 'Рома продержался дней без колы:';
 
 const urlParams = new URLSearchParams(window.location.search);
