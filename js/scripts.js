@@ -65,5 +65,5 @@ function apply_user_inputs() {
 	let user_date = document.getElementById('date-input').value;
 	let user_text = document.getElementById('text-input').value;
 	let new_link = window.location.origin + window.location.pathname + '?start=' + user_date + '&text=' + user_text;
-	window.open(new_link);
+	window.open(new_link, "_self");
 }
