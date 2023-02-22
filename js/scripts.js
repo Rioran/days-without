@@ -18,6 +18,7 @@ let display_div;
 let dateCache = 'current date goes here';
 let startDay;
 let text;
+let interval_object;
 
 function getParameter(name, defaultValue) {
 	const value = urlParams.get(name);
@@ -54,7 +55,7 @@ function renderDays() {
 document.addEventListener('DOMContentLoaded', function () {
 	display_div = document.getElementById(DISPLAY_ELEMENT_ID);
 	setUp();
-	setInterval(renderDays, MS_RENDER_DELAY);
+	interval_object = setInterval(renderDays, MS_RENDER_DELAY);
 });
 
 function user_wants_custom_inputs() {
@@ -65,5 +66,6 @@ function apply_user_inputs() {
 	let user_date = document.getElementById('date-input').value;
 	let user_text = document.getElementById('text-input').value;
 	let new_link = window.location.origin + window.location.pathname + '?start=' + user_date + '&text=' + user_text;
+	clearInterval(interval_object);
 	window.open(new_link, "_self");
 }
