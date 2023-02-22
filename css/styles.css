@@ -21,3 +21,42 @@ html, body {
   padding: 0;
   font-size: clamp(1vw, 5vw, 10vw);
 }
+.choice-button {
+  width: 20vmax;
+  background-position: top;
+  padding: 1vmax;
+  margin: 1vmax;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background-color: #707070;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 2vmax;
+  border-radius: 50%;
+}
+.user-inputs-button {
+  width: 20vmax;
+  padding: 1vmax;
+  margin: 1vmax;
+  background-color: #707070;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 5vmax;
+  border-radius: 50%;
+}
+td {
+  font-size: 5vmax;
+  vertical-align: middle;
+}
+input {
+  font-size: 5vmax;
+  min-height: 5vmax;
+  max-width: 80vw;
+}

@@ -4,6 +4,14 @@ const DISPLAY_ELEMENT_ID = 'display-div';
 const DEFAULT_DAY_STRING = '2023-01-25';
 const DEFAULT_TEXT = 'Рома продержался дней без колы:';
 
+let choice_html = '<table><tr><td>Введите ваше памятное событие<br>======='
+choice_html += '<tr><td>Дата: <input type="date" class="date-input" id="date-input">'
+choice_html += '</td></tr><tr><td>======='
+choice_html += '</td></tr><tr><td>Текст: <input type="text" class="text-input" id="text-input">'
+choice_html += '</td></tr><tr><td>======='
+choice_html += '</td></tr><tr><td><button type="text" class="user-inputs-button" id="user-inputs-button" onclick="apply_user_inputs();">Да</button>'
+choice_html += '</td></tr></table>'
+
 const urlParams = new URLSearchParams(window.location.search);
 
 let display_div;
@@ -48,3 +56,14 @@ document.addEventListener('DOMContentLoaded', function () {
 	setUp();
 	setInterval(renderDays, MS_RENDER_DELAY);
 });
+
+function user_wants_custom_inputs() {
+	display_div.innerHTML = choice_html;
+}
+
+function apply_user_inputs() {
+	let user_date = document.getElementById('date-input').value;
+	let user_text = document.getElementById('text-input').value;
+	let new_link = window.location.origin + window.location.pathname + '?start=' + user_date + '&text=' + user_text;
+	window.open(new_link);
+}
